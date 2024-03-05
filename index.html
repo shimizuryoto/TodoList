@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body class="bg-light">
+    <div class="continer w-85">
+        <p id="date" style="text-align: left; font-size: 1.2em;"></p>
+        <h1 class="text-center my-4" style="color: purple; font-size: 3.5em;">Learn by heart</h1>
+        <form id="form" class="mb-4">
+            <input type="text" id="input" class="form-control" placeholder="覚えたいものを入力" autocomplete="off">
+        </form>
+        <hr style="border-color: black;">
+    </div>
+    <div class="continer w-85">
+        <h1 class="text-center my-4" style="color: black; font-size: 2.0em;">＜Today's todo list＞</h1>
+        <ul class="list-group text-secondary" id="ul"></ul>
+    </div>
+    <div class="continer w-85">
+        <h1 class="text-center my-4" style="color: black; font-size: 2.0em;">＜All other listings＞</h1>
+        <ul class="list-group text-secondaryall" id="ulAll"></ul>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
