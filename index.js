@@ -17,8 +17,8 @@ const day = String(toDay).padStart(2, '0');
 // ページが読み込まれたときに日付を挿入する
 window.addEventListener('load', function() {
     const dateElement = document.getElementById('date');
-    const currentDate1 = `${thisYear}/${month}/${day}`;
-    dateElement.textContent = ` ${currentDate1}`;
+    const currentDateDisplay = `${thisYear}/${month}/${day}`;
+    dateElement.textContent = ` ${currentDateDisplay}`;
 });
 
 //フォーム入力
@@ -68,23 +68,24 @@ function display(item) {
     }
     li.addEventListener("click", function(event){
         li.classList.toggle("text-decoration-line-through");
-        addsaveData(item);
+        saveData(item);
     });
     
     //右クリック削除
     li.addEventListener("contextmenu", function(event){
         event.preventDefault();
         li.remove();
-        addsaveData(item);
+        saveData(item);
         removeData(li.innerText);
     });
 
-    ulAll.appendChild(li);//liを追加している
+    //liを追加している
+    ulAll.appendChild(li);
     if (li.id === "todoId"){
-        ul.appendChild(li);//liを追加している
+        ul.appendChild(li);
     } 
     input.value = "";
-    addsaveData(item);
+    saveData(item);
 }
 
 //ローカルストレージから削除してる
@@ -102,13 +103,13 @@ function check(item) {
 
     if (specialmonthes.includes(item.month)) {
         adjust = 1;
-    } else if (item.month === 2) {
+    } else if (item.month === 2) {//2月
         if ((thisYear % 4 === 0 && thisYear % 100 !== 0) || (thisYear % 400 === 0)){//うるう年判定
             adjust = 2;
         } else{
             adjust = 3;
         }
-    } else if(item.month === 12) {   // 12月
+    } else if(item.month === 12) {// 12月
         dec = 12;
     }   
 
@@ -125,6 +126,7 @@ function check(item) {
         updateNeeded = true;
     }
 
+    //todoリスト入り
     if (updateNeeded) {
         item.month = thisMonth;
         item.day = toDay;
@@ -139,13 +141,13 @@ function check(item) {
 }
 
 //データをセーブ
-function addsaveData(item) {
+function saveData(item) {
     // 重複をチェック
-    let isDuplicate = Alllist.some(list => {
+    let Duplicate = Alllist.some(list => {
         return list.text === item.text && list.month === item.month && list.day === item.day && list.status === item.status;
     });
 
-    if (!isDuplicate) {
+    if (!Duplicate) {
         Alllist = Alllist.filter(list => list.text !== item.text); // 更新前のリストを削除
         Alllist.push(item);
         localStorage.setItem("Alllist", JSON.stringify(Alllist)); // 保存
